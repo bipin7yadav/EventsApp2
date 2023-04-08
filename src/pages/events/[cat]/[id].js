@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react';
 
-function singleCityEvents({data}) {
+function SingleCityEvents({data}) {
     const inputEmail = useRef();
   const router = useRouter();
   const [message, setMessage] = useState('');
@@ -55,7 +55,7 @@ function singleCityEvents({data}) {
     )
 }
 
-export default singleCityEvents
+export default SingleCityEvents
 
 
 export async function getStaticPaths() {

@@ -5,6 +5,10 @@
   align-items: center;
   padding: 6rem;
   min-height: 90vh;
+  height:90vh;
+  width: 100vw;
+  /* overflow-x: scroll; */
+  overflow-y: scroll;
 }
 .header{
   min-height: 5vh;
