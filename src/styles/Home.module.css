@@ -4,9 +4,32 @@
   justify-content: space-between;
   align-items: center;
   padding: 6rem;
-  min-height: 100vh;
+  min-height: 90vh;
 }
-
+.header{
+  min-height: 5vh;
+  background-color: antiquewhite;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav{
+  background-color: antiquewhite;
+  color: black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+}
+.footer{
+  min-height: 5vh;
+  background-color: antiquewhite;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .description {
   display: inherit;
   justify-content: inherit;
