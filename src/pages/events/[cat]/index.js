@@ -1,17 +1,52 @@
 import React from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
 
-function Index() {
+function EventsPerCityPage({ data, pageName }) {
     return (
         <div>
-            <h1>Events in Mumbai</h1>
-            <a href='event/event1'>Event 1</a>
-            <a href='event/event2'>Event 2</a>
-            <a href='event/event3'>Event 3</a>
-            <a href='event/event4'>Event 4</a>
-            <a href='event/event5'>Event 5</a>
-            <a href='event/event6'>Event 6</a>
+            <h1>Events in {pageName}</h1>
+            <div>
+                {data.map(e => {
+                    return (
+                        <Link key={e.id} href={`/events/${e.city}/${e.id}`} passHref>
+                            {/* <a> */}
+                                <Image src={e.image} width={400} height={400} alt={e.title}/>
+                                <h2>{e.title}</h2>
+                                <p>{e.description}</p>
+                            {/* </a> */}
+                        </Link>
+                        )
+                })}
+            </div>
         </div>
     )
 }
 
-export default Index
+export default EventsPerCityPage
+
+export async function getStaticPaths() {
+    const { events_categories } = await import('/data/data.json');
+    const allPaths = events_categories.map((ev) => {
+        return {
+            params: {
+                cat: ev.id.toString(),
+            },
+        };
+    });
+    console.log(allPaths);
+    return {
+        paths: allPaths,
+        fallback: false,
+    };
+}
+
+export async function getStaticProps(context) {
+    console.log(context);
+    const id = context?.params.cat;
+    const { allEvents } = await import('/data/data.json');
+
+    const data = allEvents.filter((ev) => ev.city === id);
+
+    return { props: { data, pageName: id } };
+}
